@@ -1,7 +1,7 @@
 import { connectionManager } from './connection';
 import * as logger from './utils/logger';
 import { Collection } from './collection/collection';
-
+// index.ts
 export type initConfig = {
   database: string;
   host: string;
@@ -12,11 +12,14 @@ export type initConfig = {
 
 type AConstructorTypeOf<T> = new (...args: any[]) => T;
 
+/**
+ * Main class to be instantiated to connect to the database
+ */
 export default class ClassedQL {
   config!: initConfig;
 
   /**
-   * Intialize classedql with name of database, username and password.
+   * Intialize ClassedQL with name of database, username and password.
    *
    * @param database {string} The name of the database.
    * @param username {string} The username which is used to authenticate against the database.

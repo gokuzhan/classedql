@@ -75,5 +75,6 @@
     "maxNodeModuleJsDepth": 3
   },
   "include": ["src/**/*"],
-  "exclude": ["node_modules", "test", "types", "lib", "scripts"]
+  "exclude": ["node_modules", "test", "types", "lib", "scripts"],
+  
 }

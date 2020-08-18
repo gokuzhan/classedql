@@ -1,0 +1,7 @@
+{
+    "inputFiles": ["./src/index.ts"],
+    "mode": "file",
+    "out": "docs",
+    "entryPoint":"./src/index",
+    "excludeExternals": true
+}
