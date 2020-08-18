@@ -31,7 +31,7 @@ User.build({
   },
 });
 
-const connection = new Classql('database', 'user', 'password');
+const connection = new ClassedQL('database', 'user', 'password');
 
 connection.initialize({ User });
 ```
