@@ -11,7 +11,8 @@ npm install --save classedql
 ## Usage
 
 ```js
-const { Collection, DataTypes } = require('firebold');
+const ClassedQL = require('classedql').default;
+const { Collection, DataTypes } = require('classedql');
 
 class User extends Collection {}
 
@@ -29,4 +30,8 @@ User.build({
     null: true,
   },
 });
+
+const connection = new Classql('database', 'user', 'password');
+
+connection.initialize({ User });
 ```
