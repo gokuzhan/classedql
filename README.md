@@ -35,3 +35,7 @@ const connection = new ClassedQL('database', 'user', 'password');
 
 connection.initialize({ User });
 ```
+
+## Resources
+
+* [Documentation](https://gokuzhan.github.io/classedql/index.html)
