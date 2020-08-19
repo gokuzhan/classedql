@@ -8,7 +8,7 @@ export type ClassedQLConstructor = new (...args: any[]) => ClassedQL;
 
 export type CollectionOptions = {
   force?: boolean;
-  alter?: boolean;
+  // alter?: boolean;
 };
 
 const _queryGenerator = new QueryGenerator();
@@ -37,7 +37,7 @@ export class Collection {
   static async _drop(connection: any) {
     return _queryExecuter.dropCollection(connection, this);
   }
-  static async _alter(connection: any) {
-    return _queryExecuter.alterCollection(connection, this);
-  }
+  // static async _alter(connection: any) {
+  //   return _queryExecuter.alterCollection(connection, this);
+  // }
 }

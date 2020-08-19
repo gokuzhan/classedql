@@ -19,12 +19,13 @@ export class QueryGenerator {
     return query;
   };
 
-  alter = (database: string, table: string, props: string[]) => {
-    let query = `ALTER `;
-    query += `${this.table(database, table, false, false)};`;
-    query += ` ( ${props.join(',')} );`;
-    return query;
-  };
+  // alter = (database: string, table: string, props: any[]) => {
+  //   const columns = Object.keys(props).map((key: any) => `${key} CHANGE ${this.column(key, props[key])}`);
+  //   let query = `ALTER `;
+  //   query += `${this.table(database, table, false, false)}`;
+  //   query += ` ${columns.join(',')} ;`;
+  //   return query;
+  // };
 
   table(database: string, table: string, ifExists: boolean = true, notExists: boolean = true) {
     let query = `TABLE `;
