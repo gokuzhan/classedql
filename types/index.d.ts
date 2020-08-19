@@ -5,14 +5,18 @@ export declare type initConfig = {
     username: string;
     password?: string;
     options?: object;
+    collation?: string;
 };
-declare type AConstructorTypeOf<T> = new (...args: any[]) => T;
-declare type CollectionConstructor = AConstructorTypeOf<Collection>;
+export declare type initOperations = {
+    force: boolean;
+    alter: boolean;
+};
+export declare type CollectionConstructor = new (...args: any[]) => Collection;
 export declare class ClassedQL {
     config: initConfig;
     constructor(database: string, username: string, password?: string, options?: initConfig);
-    initialize(collections: Record<string, CollectionConstructor>): Promise<void>;
+    initialize(collections: Record<string, CollectionConstructor>, operations?: initOperations): Promise<void>;
 }
 export default ClassedQL;
-export * from './datatypes/datatypes';
 export * from './collection/collection';
+export * from './datatypes/datatypes';

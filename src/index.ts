@@ -1,6 +1,5 @@
-import { connectionManager } from './connection';
-import * as logger from './utils/logger';
 import { Collection } from './collection/collection';
+import { connectionManager } from './connection';
 // index.ts
 export type initConfig = {
   database: string;
@@ -8,10 +7,15 @@ export type initConfig = {
   username: string;
   password?: string;
   options?: object;
+  collation?: string;
 };
 
-type AConstructorTypeOf<T> = new (...args: any[]) => T;
-type CollectionConstructor = AConstructorTypeOf<Collection>;
+export type initOperations = {
+  force: boolean;
+  alter: boolean;
+};
+
+export type CollectionConstructor = new (...args: any[]) => Collection;
 
 /**
  * Main class to be instantiated to connect to the database
@@ -36,23 +40,12 @@ export class ClassedQL {
       ...options,
     };
   }
-  async initialize(collections: Record<string, CollectionConstructor>) {
+  async initialize(collections: Record<string, CollectionConstructor>, operations?: initOperations) {
     const connection = await connectionManager(this.config);
-
-    Object.keys(collections).map(async (key) => {
-      const collection = collections[key];
-      const schemaString = new collection().schema(this.config.database);
-
-      try {
-        const resulset = await connection.query(schemaString);
-
-        console.log(logger.successDebugScreen(collection.name, schemaString, JSON.stringify(resulset)));
-      } catch (error) {
-        console.log(logger.errorDebugScreen(collection.name, schemaString, error.message));
-      }
-    });
+    const _keys = Object.keys(collections);
+    for (const key of _keys) (collections[key] as any).sync(connection);
   }
 }
 export default ClassedQL;
-export * from './datatypes/datatypes';
 export * from './collection/collection';
+export * from './datatypes/datatypes';

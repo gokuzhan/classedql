@@ -14,7 +14,7 @@ export class QueryGenerator {
   };
 
   drop = (database: string, table: string) => {
-    let query = `DROP TABLE IF EXISTS `;
+    let query = `DROP TABLE `;
     query += `${this.table(database, table)};`;
     return query;
   };
