@@ -19,9 +19,10 @@ export class QueryGenerator {
     return query;
   };
 
-  alter = (database: string, table: string) => {
-    let query = `ALTER `;
-    query += `${this.table(database, table)};`;
+  alter = (database: string, table: string, props: string[]) => {
+    let query = `CREATE `;
+    query += `${this.table(database, table)}`;
+    query += ` ( ${props.join(',')} );`;
     return query;
   };
 

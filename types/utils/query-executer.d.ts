@@ -10,4 +10,12 @@ export declare class QueryExecuter {
         sql: string;
         execution: any;
     }>;
+    dropCollection(connection: any, collection: CollectionConstructor): Promise<false | {
+        sql: string;
+        execution: any;
+    }>;
+    alterCollection(connection: any, collection: CollectionConstructor): Promise<false | {
+        sql: string;
+        execution: any;
+    }>;
 }

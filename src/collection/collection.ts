@@ -1,8 +1,15 @@
 import { DocumentPropertyType } from '../datatypes/datatypes';
 import { QueryGenerator } from '../utils/query-generator';
 import { QueryExecuter } from '../utils/query-executer';
+import ClassedQL from '..';
 
-type DocumentProperties = Record<string, DocumentPropertyType>;
+export type DocumentProperties = Record<string, DocumentPropertyType>;
+export type ClassedQLConstructor = new (...args: any[]) => ClassedQL;
+
+export type CollectionOptions = {
+  force?: boolean;
+  alter?: boolean;
+};
 
 const _queryGenerator = new QueryGenerator();
 const _queryExecuter = new QueryExecuter();
@@ -13,7 +20,7 @@ export class Collection {
   options!: object;
   instance!: object;
 
-  static build(properties: DocumentProperties, options: object) {
+  static build(properties: DocumentProperties, options: CollectionOptions) {
     this.prototype.name = this.name;
     this.prototype.properties = properties;
     this.prototype.options = options;
@@ -24,7 +31,13 @@ export class Collection {
     const columns = Object.keys(props).map((key) => _queryGenerator.column(key, props[key]));
     return _queryGenerator.create(database, this.name, columns);
   }
-  static async sync(database: any) {
+  static async _sync(database: any) {
     return _queryExecuter.createCollection(database, this);
+  }
+  static async _drop(database: any) {
+    return _queryExecuter.dropCollection(database, this);
+  }
+  static async _alter(database: any) {
+    return _queryExecuter.alterCollection(database, this);
   }
 }

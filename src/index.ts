@@ -42,8 +42,21 @@ export class ClassedQL {
   }
   async initialize(collections: Record<string, CollectionConstructor>, operations?: initOperations) {
     const connection = await connectionManager(this.config);
+    // collections
     const _keys = Object.keys(collections);
-    for (const key of _keys) (collections[key] as any).sync(connection);
+    // syncing collections to database.
+    for (const key of _keys) (collections[key] as any)._sync(connection.config.database);
+
+    if (operations != null) {
+      // alter collections from database.
+      if (operations.alter) {
+        for (const key of _keys) (collections[key] as any)._alter(connection.config.database);
+        return;
+      }
+
+      // drop collections from database.
+      if (operations.force) for (const key of _keys) (collections[key] as any)._drop(connection.config.database);
+    }
   }
 }
 export default ClassedQL;
