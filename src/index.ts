@@ -15,7 +15,7 @@ type AConstructorTypeOf<T> = new (...args: any[]) => T;
 /**
  * Main class to be instantiated to connect to the database
  */
-export default class ClassedQL {
+export class ClassedQL {
   config!: initConfig;
 
   /**
@@ -52,6 +52,6 @@ export default class ClassedQL {
     });
   }
 }
-
+export default ClassedQL;
 export * from './datatypes/datatypes';
 export * from './collection/collection';
