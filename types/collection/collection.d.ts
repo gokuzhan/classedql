@@ -13,15 +13,15 @@ export declare class Collection {
     instance: object;
     static build(properties: DocumentProperties, options: CollectionOptions): void;
     schema(database: string): string;
-    static _sync(database: any): Promise<false | {
+    static _sync(connection: any): Promise<false | {
         sql: string;
         execution: any;
     }>;
-    static _drop(database: any): Promise<false | {
+    static _drop(connection: any): Promise<false | {
         sql: string;
         execution: any;
     }>;
-    static _alter(database: any): Promise<false | {
+    static _alter(connection: any): Promise<false | {
         sql: string;
         execution: any;
     }>;
