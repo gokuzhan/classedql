@@ -21,15 +21,15 @@ export class QueryGenerator {
 
   alter = (database: string, table: string, props: string[]) => {
     let query = `ALTER `;
-    query += `${this.table(database, table, true, false)};`;
+    query += `${this.table(database, table, false, false)};`;
     query += ` ( ${props.join(',')} );`;
     return query;
   };
 
   table(database: string, table: string, ifExists: boolean = true, notExists: boolean = true) {
-    let query = `TABLE`;
-    if (ifExists && !notExists) query += ' IF EXISTS';
-    if (notExists) query += ' IF NOT EXISTS';
+    let query = `TABLE `;
+    if (ifExists && !notExists) query += 'IF EXISTS';
+    if (notExists) query += 'IF NOT EXISTS';
     query += ` ${Utils.addTicks(database, '`')}.${Utils.addTicks(table, '`')}`;
     return query;
   }
