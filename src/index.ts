@@ -11,6 +11,7 @@ export type initConfig = {
 };
 
 type AConstructorTypeOf<T> = new (...args: any[]) => T;
+type CollectionConstructor = AConstructorTypeOf<Collection>;
 
 /**
  * Main class to be instantiated to connect to the database
@@ -35,7 +36,7 @@ export class ClassedQL {
       ...options,
     };
   }
-  async initialize(collections: Record<string, AConstructorTypeOf<Collection>>) {
+  async initialize(collections: Record<string, CollectionConstructor>) {
     const connection = await connectionManager(this.config);
 
     Object.keys(collections).map(async (key) => {

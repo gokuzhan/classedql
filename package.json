@@ -12,7 +12,7 @@
     "docs": "typedoc",
     "postinstall": "node postinstall.js"
   },
-  "types": "lib/types/index.d.ts",
+  "types": "types/index.d.ts",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/gokuzhan/classedql.git"
@@ -52,6 +52,7 @@
   },
   "files": [
     "lib/**/*",
+    "types/**/*",
     "postinstall.js"
   ]
 }

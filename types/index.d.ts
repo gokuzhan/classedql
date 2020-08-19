@@ -7,10 +7,11 @@ export declare type initConfig = {
     options?: object;
 };
 declare type AConstructorTypeOf<T> = new (...args: any[]) => T;
+declare type CollectionConstructor = AConstructorTypeOf<Collection>;
 export declare class ClassedQL {
     config: initConfig;
     constructor(database: string, username: string, password?: string, options?: initConfig);
-    initialize(collections: Record<string, AConstructorTypeOf<Collection>>): Promise<void>;
+    initialize(collections: Record<string, CollectionConstructor>): Promise<void>;
 }
 export default ClassedQL;
 export * from './datatypes/datatypes';
