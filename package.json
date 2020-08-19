@@ -54,5 +54,8 @@
     "lib/**/*",
     "types/**/*",
     "postinstall.js"
-  ]
+  ],
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  }
 }
