@@ -14,21 +14,22 @@ export class QueryGenerator {
   };
 
   drop = (database: string, table: string) => {
-    let query = `DROP TABLE `;
-    query += `${this.table(database, table)};`;
+    let query = `DROP `;
+    query += `${(this.table(database, table), true, false)};`;
     return query;
   };
 
   alter = (database: string, table: string, props: string[]) => {
-    let query = `CREATE `;
-    query += `${this.table(database, table)}`;
+    let query = `ALTER `;
+    query += `${(this.table(database, table), true, false)};`;
     query += ` ( ${props.join(',')} );`;
     return query;
   };
 
-  table(database: string, table: string, ifNotExists: boolean = true) {
+  table(database: string, table: string, ifExists: boolean = true, notExists: boolean = true) {
     let query = `TABLE`;
-    if (ifNotExists) query += ' IF NOT EXISTS';
+    if (ifExists && !notExists) query += ' IF EXISTS';
+    if (notExists) query += ' IF NOT EXISTS';
     query += ` ${Utils.addTicks(database, '`')}.${Utils.addTicks(table, '`')}`;
     return query;
   }
