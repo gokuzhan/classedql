@@ -47,10 +47,10 @@ export class ClassedQL {
 
     if (operations != null) {
       // alter collections from database.
-      if (operations.alter) {
-        for (const key of _keys) (collections[key] as any)._alter(connection);
-        return;
-      }
+      // if (operations.alter) {
+      //   for (const key of _keys) (collections[key] as any)._alter(connection);
+      //   return;
+      // }
 
       // drop collections from database.
       if (operations.force && !operations.alter) for (const key of _keys) (collections[key] as any)._drop(connection);
