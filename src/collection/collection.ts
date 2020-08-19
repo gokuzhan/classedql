@@ -31,13 +31,13 @@ export class Collection {
     const columns = Object.keys(props).map((key) => _queryGenerator.column(key, props[key]));
     return _queryGenerator.create(database, this.name, columns);
   }
-  static async _sync(database: any) {
-    return _queryExecuter.createCollection(database, this);
+  static async _sync(connection: any) {
+    return _queryExecuter.createCollection(connection, this);
   }
-  static async _drop(database: any) {
-    return _queryExecuter.dropCollection(database, this);
+  static async _drop(connection: any) {
+    return _queryExecuter.dropCollection(connection, this);
   }
-  static async _alter(database: any) {
-    return _queryExecuter.alterCollection(database, this);
+  static async _alter(connection: any) {
+    return _queryExecuter.alterCollection(connection, this);
   }
 }

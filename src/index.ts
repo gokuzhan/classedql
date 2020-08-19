@@ -45,17 +45,17 @@ export class ClassedQL {
     // collections
     const _keys = Object.keys(collections);
     // syncing collections to database.
-    for (const key of _keys) (collections[key] as any)._sync(connection.config.database);
+    for (const key of _keys) (collections[key] as any)._sync(connection);
 
     if (operations != null) {
       // alter collections from database.
       if (operations.alter) {
-        for (const key of _keys) (collections[key] as any)._alter(connection.config.database);
+        for (const key of _keys) (collections[key] as any)._alter(connection);
         return;
       }
 
       // drop collections from database.
-      if (operations.force) for (const key of _keys) (collections[key] as any)._drop(connection.config.database);
+      if (operations.force) for (const key of _keys) (collections[key] as any)._drop(connection);
     }
   }
 }
