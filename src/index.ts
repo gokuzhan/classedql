@@ -44,8 +44,6 @@ export class ClassedQL {
     const connection = await connectionManager(this.config);
     // collections
     const _keys = Object.keys(collections);
-    // syncing collections to database.
-    for (const key of _keys) (collections[key] as any)._sync(connection);
 
     if (operations != null) {
       // alter collections from database.
@@ -55,7 +53,10 @@ export class ClassedQL {
       }
 
       // drop collections from database.
-      if (operations.force) for (const key of _keys) (collections[key] as any)._drop(connection);
+      if (operations.force && !operations.alter) for (const key of _keys) (collections[key] as any)._drop(connection);
+
+      // syncing collections to database.
+      for (const key of _keys) (collections[key] as any)._sync(connection);
     }
   }
 }
