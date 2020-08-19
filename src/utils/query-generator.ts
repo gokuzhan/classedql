@@ -15,13 +15,13 @@ export class QueryGenerator {
 
   drop = (database: string, table: string) => {
     let query = `DROP `;
-    query += `${(this.table(database, table), true, false)};`;
+    query += `${this.table(database, table, true, false)};`;
     return query;
   };
 
   alter = (database: string, table: string, props: string[]) => {
     let query = `ALTER `;
-    query += `${(this.table(database, table), true, false)};`;
+    query += `${this.table(database, table, true, false)};`;
     query += ` ( ${props.join(',')} );`;
     return query;
   };
