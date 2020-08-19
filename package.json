@@ -1,6 +1,6 @@
 {
   "name": "classedql",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "ClassedQL is a promise-based Node.js ORM for MySQL",
   "main": "lib/index.js",
   "scripts": {
